@@ -65,6 +65,21 @@ body {
     position: relative;
 }
 
+@media (max-width:500px){
+    .profile-card{
+        width:350px;
+        padding:30px 20px;
+    }
+    header h1{
+        font-size:36px;
+    }
+
+    .profile-image{
+        width:120px;
+        height:120px;
+    }
+
+}
 .profile-card::before {
     content: "";
     position: absolute;
