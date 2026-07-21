@@ -14,7 +14,7 @@ I enjoy building creative and responsive user interfaces while continuously impr
 
 ### Week 01
 **Task 01: Personal Profile Card**  
-[View Project](./Week-01-Profile-Card)
+[View Project](./Week_01/Task-01-Profile-Card)
 Built a responsive profile card using semantic HTML and CSS.
 
 ### Week 02
