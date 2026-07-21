@@ -15,8 +15,8 @@ I enjoy building creative and responsive user interfaces while continuously impr
 ## Internship Tasks
 
 Week 01
-> Task 01: Personal Profile Card (./Week-01-Profile-Card), Built a responsive profile card using semantic HTML and CSS
->Task 02:
+Task 01: Personal Profile Card (./Week-01-Profile-Card), Built a responsive profile card using semantic HTML and CSS
+Task 02:
 
 Week 02
 Week 03
