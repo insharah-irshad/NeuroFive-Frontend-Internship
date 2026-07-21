@@ -1,7 +1,5 @@
 # NeuroFive Frontend Development Internship
 
-![Frontend Development](https://img.shields.io/badge/Internship-Frontend%20Development-E8B7C2)
-
 ## About The Internship
 
 This repository contains my tasks, projects, and learning progress during my Frontend Web Development Internship at NeuroFive Solutions.
@@ -14,13 +12,16 @@ I enjoy building creative and responsive user interfaces while continuously impr
 
 ## Internship Tasks
 
-Week 01
-Task 01: Personal Profile Card (./Week-01-Profile-Card), Built a responsive profile card using semantic HTML and CSS
-Task 02:
+### Week 01
+**Task 01: Personal Profile Card**  
+[View Project](./Week-01-Profile-Card)
+Built a responsive profile card using semantic HTML and CSS.
 
-Week 02
-Week 03
-Week 04
+### Week 02
+
+### Week 03
+
+### Week 04
 
 ##  Technologies & Tools
 1. HTML5
