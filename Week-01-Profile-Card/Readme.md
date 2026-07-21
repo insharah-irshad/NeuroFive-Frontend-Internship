@@ -25,7 +25,7 @@ I created a personal profile card using HTML and CSS. The purpose of this projec
 ## Design & Styling
 
 The profile card was designed with:
-1. Semantic HTML elements like `header`, `section`, and `footer`
+1. Semantic HTML elements like header, section, and footer
 2. CSS box model concepts using margin and padding
 3. Border-radius for smooth edges
 4. Box-shadow for depth and modern appearance
