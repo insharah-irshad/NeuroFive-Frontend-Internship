@@ -1,0 +1,276 @@
+/* ===========================================================
+   DESIGN TOKENS — scrapbook / mood-board aesthetic
+   =========================================================== */
+:root {
+  --bg:            #F3E6DC;   /* warm beige-blush page          */
+  --card:          #FFFBF6;   /* soft cream card                 */
+  --ink:           #3E2723;   /* rich chocolate brown text        */
+  --muted:         #7A6255;   /* muted warm brown body text       */
+  --rose:          #7B4B34;   /* chocolate-caramel accent          */
+  --sage:          #8A9A5B;   /* olive-sage accent                 */
+  --mustard:       #D9A441;   /* warm caramel tape highlight       */
+
+  --font-hand:    'Caveat', cursive;
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: var(--font-body);
+
+    background:
+      radial-gradient(circle at 15% 20%, rgba(123,75,52,0.14), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(138,154,91,0.14), transparent 45%),
+      var(--bg);
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+/* Main */
+
+.page {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+/* Card */
+
+.profile-card {
+
+    width: 380px;
+
+    max-width: 90vw;
+
+    background: var(--card);
+
+    border-radius: 22px;
+
+    padding: 38px 30px 34px;
+
+    text-align: center;
+
+    box-shadow:
+      0 1px 2px rgba(59,44,53,0.06),
+      0 24px 48px -18px rgba(59,44,53,0.35);
+
+    position: relative;
+
+}
+
+/* thin dotted "scrapbook page" edge, inset from the real border */
+.profile-card::before {
+
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1.5px dashed rgba(123,75,52,0.3);
+    border-radius: 15px;
+    pointer-events: none;
+
+}
+
+
+/* Header / Polaroid photo */
+
+header {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.polaroid {
+
+    background: var(--card);
+    padding: 12px 12px 22px;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 1px rgba(59,44,53,0.08),
+      0 14px 24px -10px rgba(59,44,53,0.35);
+    transform: rotate(-3deg);
+    position: relative;
+    margin-top: 4px;
+
+}
+
+.profile-image {
+
+    width: 132px;
+
+    height: 132px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 2px;
+
+}
+
+/* washi tape strips pinning the polaroid down */
+.tape {
+
+    position: absolute;
+    width: 46px;
+    height: 18px;
+    opacity: 0.85;
+
+}
+
+.tape--left {
+
+    top: -9px;
+    left: -10px;
+    background: var(--mustard);
+    transform: rotate(-40deg);
+
+}
+
+.tape--right {
+
+    top: -9px;
+    right: -10px;
+    background: var(--sage);
+    transform: rotate(40deg);
+
+}
+
+
+header h1 {
+
+    font-family: var(--font-hand);
+    font-weight: 700;
+    font-size: 42px;
+    color: var(--ink);
+    margin-top: 20px;
+    line-height: 1;
+    transform: rotate(-1deg);
+
+}
+
+
+.role {
+
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: rgba(123,75,52,0.1);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-top: 10px;
+    transform: rotate(1deg);
+
+}
+
+
+/* About */
+
+.about {
+
+    margin-top: 22px;
+
+}
+
+.about p {
+
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 15px;
+
+}
+
+
+/* Social */
+
+.social-icons {
+
+    margin-top: 26px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+}
+
+
+.social-icons a {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    border: 1.5px dashed var(--rose);
+
+    color: var(--rose);
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.25s ease;
+
+}
+
+
+.social-icons a:hover {
+
+    background: var(--rose);
+
+    border-style: solid;
+
+    color: var(--card);
+
+    transform: translateY(-3px) rotate(-4deg);
+
+}
+
+
+.social-icons a:focus-visible {
+
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+
+}
