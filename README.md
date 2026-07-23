@@ -15,7 +15,12 @@ I enjoy building creative and responsive user interfaces while continuously impr
 ### Week 01
 **Task 01: Personal Profile Card**  
 [View Task 01: Profile Card](./Week-01/Task-01-ProfileCard)
-Built a responsive profile card using semantic HTML and CSS.
+Built a responsive personal profile card using semantic HTML and CSS.
+
+
+**Task 02: Responsive Layouts - Flexbox & CSS Grid**  
+[View Task 02: Responsive Layouts](./Week-01/Task-02-ResponsiveLayouts)  
+Built a responsive three-column pricing section using both CSS Flexbox and CSS Grid. Implemented the same layout with two different approaches and added media queries to make both versions responsive on smaller screens.
 
 ### Week 02
 
