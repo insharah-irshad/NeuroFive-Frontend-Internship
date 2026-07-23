@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Grid Version</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f6fa;
+    color: #222;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    background: #1f2937;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    color: #cbd5e1;
+    font-size: 1rem;
+  }
+
+  /* ---------- Pricing Section (Grid) ---------- */
+  .pricing-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 50px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 32px 24px;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    text-align: center;
+  }
+
+  .pricing-card.featured {
+    border: 2px solid #4f46e5;
+    transform: scale(1.03);
+  }
+
+  .pricing-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .price {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 20px;
+  }
+
+  .price span {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: normal;
+  }
+
+  .pricing-card ul {
+    list-style: none;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .pricing-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #444;
+  }
+
+  .pricing-card button {
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: end;
+  }
+
+  .pricing-card button:hover {
+    background: #4338ca;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: #1f2937;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+
+  /* ---------- Responsive: stack below 600px ---------- */
+  @media (max-width: 600px) {
+    .pricing-container {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Choose the plan that fits your needs — built with CSS Grid</p>
+  </header>
+
+  <main class="pricing-container">
+
+    <div class="pricing-card">
+      <h2>Basic</h2>
+      <div class="price">$9<span>/mo</span></div>
+      <ul>
+        <li>1 Project</li>
+        <li>5GB Storage</li>
+        <li>Email Support</li>
+        <li>Community Access</li>
+      </ul>
+      <button>Choose Basic</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <h2>Pro</h2>
+      <div class="price">$29<span>/mo</span></div>
+      <ul>
+        <li>10 Projects</li>
+        <li>50GB Storage</li>
+        <li>Priority Support</li>
+        <li>Advanced Analytics</li>
+      </ul>
+      <button>Choose Pro</button>
+    </div>
+
+    <div class="pricing-card">
+      <h2>Enterprise</h2>
+      <div class="price">$79<span>/mo</span></div>
+      <ul>
+        <li>Unlimited Projects</li>
+        <li>500GB Storage</li>
+        <li>24/7 Dedicated Support</li>
+        <li>Custom Integrations</li>
+      </ul>
+      <button>Choose Enterprise</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Neurofive Solutions. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
