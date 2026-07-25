@@ -17,12 +17,15 @@ I enjoy building creative and responsive user interfaces while continuously impr
 [View Task 01: Profile Card](./Week-01/Task-01-ProfileCard)
 Built a responsive personal profile card using semantic HTML and CSS.
 
-
 **Task 02: Responsive Layouts - Flexbox & CSS Grid**  
 [View Task 02: Responsive Layouts](./Week-01/Task-02-ResponsiveLayouts)  
 Built a responsive three-column pricing section using both CSS Flexbox and CSS Grid. Implemented the same layout with two different approaches and added media queries to make both versions responsive on smaller screens.
 
 ### Week 02
+**Task 01: DOM Manipulation — Interactive To-Do List**  
+[View Task 01: To-Do List](./Week-02/Task-01-ToDoList)
+Built an interactive To-Do List application using HTML, CSS, and JavaScript.  
+Implemented DOM manipulation concepts to dynamically add, complete, delete, and filter tasks without reloading the page.
 
 ### Week 03
 
