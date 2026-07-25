@@ -1,0 +1,345 @@
+:root {
+  --ink: #14171f;
+  --ink-soft: #1d212c;
+  --paper: #f5f1e8;
+  --paper-line: #ded6c2;
+  --text-dark: #201e1a;
+  --text-muted: #7a7568;
+  --amber: #e3a73c;
+  --sage: #6b8f71;
+  --void-red: #b8543a;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ink);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(227, 167, 60, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(107, 143, 113, 0.06), transparent 45%);
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---- Ledger card ---- */
+.ledger {
+  width: 100%;
+  max-width: 520px;
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 40px 36px 28px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.4) inset,
+    0 30px 60px rgba(0,0,0,0.45);
+  position: relative;
+}
+
+.ledger::before {
+  /* serrated / torn top edge */
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 0; right: 0;
+  height: 10px;
+  background:
+    linear-gradient(135deg, var(--paper) 50%, transparent 50%) 0 0 / 16px 16px repeat-x,
+    linear-gradient(-135deg, var(--paper) 50%, transparent 50%) 0 0 / 16px 16px repeat-x;
+}
+
+.ledger__header { margin-bottom: 28px; }
+
+.ledger__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.ledger__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: var(--text-dark);
+}
+
+.ledger__sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ---- Entry form ---- */
+.entry-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 13px 14px;
+  border: 1.5px solid var(--paper-line);
+  border-radius: 3px;
+  background: #fffdf8;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+#task-input:focus-visible {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(227, 167, 60, 0.25);
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn--ink:hover { background: var(--ink-soft); }
+.btn--ink:active { transform: scale(0.97); }
+.btn--ink:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* ---- Filters ---- */
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--paper-line);
+  padding-bottom: 14px;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover { color: var(--text-dark); }
+
+.filter-btn.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.filter-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* ---- Task list ---- */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 4px;
+  border-bottom: 1px dashed var(--paper-line);
+  position: relative;
+}
+
+.task-item:last-child { border-bottom: none; }
+
+.task-item__index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.task-item__checkbox {
+  appearance: none;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.task-item__checkbox:hover { border-color: var(--sage); }
+
+.task-item__checkbox:checked {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.task-item__checkbox:checked::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.task-item__checkbox:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.task-item__text {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--text-dark);
+  word-break: break-word;
+}
+
+.task-item.is-complete .task-item__text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--sage);
+  text-decoration-thickness: 1.5px;
+}
+
+/* Signature element: rubber stamp badge on completion */
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  border: 1.5px solid var(--sage);
+  border-radius: 3px;
+  padding: 2px 6px;
+  transform: rotate(-8deg);
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.task-item.is-complete .stamp {
+  opacity: 1;
+  animation: stamp-in 0.22s ease-out;
+}
+
+@keyframes stamp-in {
+  from { opacity: 0; transform: rotate(-8deg) scale(1.8); }
+  to   { opacity: 1; transform: rotate(-8deg) scale(1); }
+}
+
+.task-item__delete {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.task-item:hover .task-item__delete,
+.task-item__delete:focus-visible { opacity: 1; }
+
+.task-item__delete:hover {
+  color: var(--void-red);
+  background: rgba(184, 84, 58, 0.1);
+}
+
+.task-item__delete:focus-visible { outline: 2px solid var(--void-red); outline-offset: 1px; }
+
+/* ---- Empty state ---- */
+.empty-state {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 30px 0;
+  margin: 0;
+}
+
+/* ---- Footer ---- */
+.ledger__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--paper-line);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.link-btn:hover { color: var(--void-red); }
+.link-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp, .task-item__checkbox, .task-item__delete { transition: none; animation: none; }
+}
+
+@media (max-width: 420px) {
+  .ledger { padding: 32px 20px 22px; }
+  .ledger__title { font-size: 28px; }
+}

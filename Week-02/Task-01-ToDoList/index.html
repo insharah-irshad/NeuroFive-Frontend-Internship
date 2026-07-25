@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Task Ledger — Entry No. 002</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="ledger" role="main">
+
+    <header class="ledger__header">
+      <p class="ledger__eyebrow">Digital Notebook</p>
+      <h1 class="ledger__title">To DO List </h1>
+      <p class="ledger__sub">Plan. Track. Complete.</p>
+    </header>
+
+    <form class="entry-form" id="entry-form" autocomplete="off">
+      <label for="task-input" class="visually-hidden">New task</label>
+      <input
+        type="text"
+        id="task-input"
+        name="task"
+        placeholder="Log a new task"
+        maxlength="120"
+        required
+      />
+      <button type="submit" class="btn btn--ink">
+        <span>ADD</span>
+      </button>
+    </form>
+
+    <nav class="filters" id="filters" aria-label="Filter tasks">
+      <button class="filter-btn is-active" data-filter="all" type="button">All</button>
+      <button class="filter-btn" data-filter="active" type="button">Active</button>
+      <button class="filter-btn" data-filter="completed" type="button">Completed</button>
+    </nav>
+
+    <ul class="task-list" id="task-list" aria-live="polite"></ul>
+
+    <p class="empty-state" id="empty-state" hidden>Nothing logged here yet.</p>
+
+    <footer class="ledger__footer">
+      <p id="counter" class="counter">0 tasks remaining</p>
+      <button type="button" id="clear-completed" class="link-btn">Clear completed</button>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
