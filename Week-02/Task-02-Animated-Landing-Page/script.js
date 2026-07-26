@@ -1,11 +1,11 @@
-// Scroll-triggered reveal for the bento tiles using Intersection Observer
+// Scroll triggered reveal
 const revealCards = document.querySelectorAll('.bento-item');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target); // reveal once, don't re-trigger on scroll-back
+      observer.unobserve(entry.target);
     }
   });
 }, {
