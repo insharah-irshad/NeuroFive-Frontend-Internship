@@ -1,4 +1,4 @@
-# Task 2: Animated Fashion Landing Page
+# Task 2: Animated Landing Page
 
 A modern and responsive fashion landing page built as part of the **NeuroFive Frontend Web Development Internship**. This project showcases an elegant landing page for **IF Atelier**, a fashion brand featuring stylish bags, kurtis, and abayas. The focus was on creating a premium user experience through clean design, smooth animations, and interactive elements using HTML, CSS, and JavaScript.
 
@@ -78,10 +78,5 @@ Through this project, I gained hands-on experience with:
 
 ## Developed By
 **Insharah Irshad**
-Frontend Web Development Intern at NeuroFive Solutions
-
 Bachelor of Science in Artificial Intelligence (BSAI)
 
----
-
-⭐ If you like this project, consider giving it a star!
