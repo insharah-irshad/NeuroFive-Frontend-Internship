@@ -27,13 +27,19 @@ Built a responsive three-column pricing section using both CSS Flexbox and CSS G
 Built an interactive To-Do List application using HTML, CSS, and JavaScript.  
 Implemented DOM manipulation concepts to dynamically add, complete, delete, and filter tasks without reloading the page.
 
+Task 02: Animated Landing Page — IF Atelier
+[View Task 02: Landing Page](./Week-02/Task-02-Animated-Landing-Page)
+Designed and developed a modern fashion brand landing page for **IF Atelier**, featuring elegant bags, kurtis, and abayas.  
+Created a visually appealing interface with smooth animations, interactive elements, and responsive design.  
+Focused on combining brand identity, user experience, and modern frontend development practices.
+
 ### Week 03
 
 ### Week 04
 
 ##  Technologies & Tools
-1. HTML5
-2. CSS3
+1. HTML
+2. CSS
 3. JavaScript
 4. Git & GitHub
 5. Responsive Web Design
