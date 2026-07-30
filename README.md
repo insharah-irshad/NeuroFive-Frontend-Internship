@@ -34,6 +34,12 @@ Created a visually appealing interface with smooth animations, interactive eleme
 Focused on combining brand identity, user experience, and modern frontend development practices.
 
 ### Week 03
+### Task 01: Live Weather Dashboard
+
+[View Task 01: Landing Page](./Week-03/Task-01-WeatherDashboard)
+Built an immersive weather visualization dashboard using HTML, CSS, and JavaScript.
+WHEATHER transforms real time weather data into a dynamic atmospheric experience instead of displaying weather information through traditional cards. The project integrates the Open-Meteo API to fetch live weather conditions and creates a responsive observatory style interface.
+
 
 ### Week 04
 
