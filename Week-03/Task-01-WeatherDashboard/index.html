@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aether — Live Weather Forecast</title>
+<meta name="description" content="A weather observatory that renders the real sky — sun and moon positioned by actual sunrise and sunset — with condition-based safety guidance.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,440;0,9..144,600;1,9..144,440&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-sky="clear-day" data-loading="true">
+
+  <div class="sky" aria-hidden="true">
+    <div class="sky__gradient"></div>
+    <canvas id="skyCanvas"></canvas>
+    <div class="sky__scrim"></div>
+    <div class="sky__vignette"></div>
+  </div>
+
+  <div class="viewport">
+
+    <header class="bar">
+      <div class="bar__mark">
+        <span class="bar__dot" id="liveDot"></span>
+        <span>WHEATHER</span>
+      </div>
+
+      <form class="bar__search" id="searchForm" role="search">
+        <input
+          id="cityInput"
+          type="text"
+          name="city"
+          placeholder="Search"
+          autocomplete="off"
+          aria-label="City name">
+        <button type="submit" id="searchBtn">
+          <span>Scan</span>s
+        </button>
+      </form>
+
+      <div class="bar__clock" id="localClock">--:--</div>
+    </header>
+
+    <!-- Hero: current conditions + horizon arc -->
+    <main class="hero" id="hero">
+
+      <div class="hero__status" id="statusLine" role="status" aria-live="polite"></div>
+
+      <section class="hero__reading" id="reading">
+        <p class="reading__place" id="placeName">Waiting to Search</p>
+        <div class="reading__temp-row">
+          <h1 class="reading__temp" id="tempValue">—°</h1>
+          <div class="reading__meta">
+        
+            <p class="reading__feels" id="feelsLike"></p>
+          </div>
+        </div>
+
+        <dl class="reading__stats" id="statGrid">
+          <div class="stat"><dt>Humidity</dt><dd id="statHumidity">—</dd></div>
+          <div class="stat"><dt>Wind</dt><dd id="statWind">—</dd></div>
+          <div class="stat"><dt>Pressure</dt><dd id="statPressure">—</dd></div>
+          <div class="stat"><dt>UV index</dt><dd id="statUv">—</dd></div>
+        </dl>
+      </section>
+
+      <!-- Signature element: the horizon arc -->
+      <section class="horizon" id="horizon" aria-label="Sun position across today">
+        <svg class="horizon__svg" id="horizonSvg" viewBox="0 0 1000 220" preserveAspectRatio="none">
+          <path id="horizonPath" class="horizon__path" d="M 40 190 Q 500 20 960 190" fill="none"/>
+          <line class="horizon__ground" x1="0" y1="190" x2="1000" y2="190"/>
+          <g id="horizonMarker" class="horizon__marker" transform="translate(40,190)">
+            <circle class="horizon__marker-core" r="9"/>
+            <circle class="horizon__marker-halo" r="18"/>
+          </g>
+        </svg>
+        <div class="horizon__labels">
+          <div class="horizon__label horizon__label--rise">
+            <span class="horizon__label-time" id="sunriseTime">—:—</span>
+            <span class="horizon__label-tag">Sunrise</span>
+          </div>
+          <div class="horizon__label horizon__label--now">
+            <span class="horizon__label-time" id="dayProgress">—%</span>
+            <span class="horizon__label-tag">Through the day</span>
+          </div>
+          <div class="horizon__label horizon__label--set">
+            <span class="horizon__label-time" id="sunsetTime">—:—</span>
+            <span class="horizon__label-tag">Sunset</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Field notes: prevention / lifestyle / forecast -->
+    <section class="notes" id="notes" aria-label="Field notes">
+      <article class="panel panel--notes">
+        <h2 class="panel__title"><span class="panel__index">01</span>Before you head out</h2>
+        <ul class="panel__list" id="preventionList"></ul>
+      </article>
+
+      <article class="panel panel--notes">
+        <h2 class="panel__title"><span class="panel__index">02</span>Living with today</h2>
+        <ul class="panel__list" id="lifestyleList"></ul>
+      </article>
+
+      <article class="panel panel--forecast">
+        <h2 class="panel__title"><span class="panel__index">03</span>Next three days</h2>
+        <div class="panel__forecast" id="forecastRow"></div>
+      </article>
+    </section>
+
+    <footer class="foot">
+      <span>By Insharah Irshad</span>
+      <span id="coordsLine">—</span>
+    </footer>
+
+  </div>
+
+  <!-- Empty state, shown before any search -->
+  <div class="hint" id="hint">
+    <p>Search to open the sky.</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

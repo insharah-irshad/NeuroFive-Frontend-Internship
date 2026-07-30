@@ -1,0 +1,526 @@
+/* ==========================================================================
+   AETHER — tokens
+   ========================================================================== */
+
+:root{
+  /* neutral chrome — stays constant regardless of sky state */
+  --ink:            #fefeff;
+  --ink-dim:         #A6ADB8;
+  --ink-faint:       #d7dde9;
+  --panel-bg:        rgba(4, 10, 27, 0.52);
+  --panel-bg-solid:  rgba(43, 98, 236, 0.86);
+  --panel-border:    rgba(99, 153, 85, 0.12);
+  --hairline:        rgba(237, 239, 242, 0.16);
+  --beacon:          #4a9990;      /* single accent — live state, focus, "now" marker */
+  --beacon-dim:      rgba(85, 214, 198, 0.28);
+  --alert:           #e6511f;      /* reserved for genuine severe-weather flags only */
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+  --sky-text-shadow: 0 1px 2px rgba(48, 107, 141, 0.55), 0 4px 16px rgba(0,0,0,0.35);
+
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* sky gradients per state — day/night pairs kept tonally related, all muted */
+[data-sky="clear-day"]      { --sky-a:#3E86C4; --sky-b:#7FB8E0; --sky-c:#D9E9F2; --sun-color:#F4E4B8; }
+[data-sky="clear-night"]    { --sky-a:#050810; --sky-b:#0C1430; --sky-c:#1A2C4C; --sun-color:#DCE2EE; }
+[data-sky="partly-day"]     { --sky-a:#5E92B8; --sky-b:#9CBBD2; --sky-c:#DEE6EA; --sun-color:#F1E6C4; }
+[data-sky="partly-night"]   { --sky-a:#070A14; --sky-b:#131A2C; --sky-c:#232C42; --sun-color:#DCE2EE; }
+[data-sky="overcast-day"]   { --sky-a:#7C8592; --sky-b:#9CA3AD; --sky-c:#C7CBD1; --sun-color:#E6E7E9; }
+[data-sky="overcast-night"] { --sky-a:#0B0D12; --sky-b:#191C22; --sky-c:#262A31; --sun-color:#B9BEC6; }
+[data-sky="fog-day"]        { --sky-a:#9B9E9B; --sky-b:#BCBEBA; --sky-c:#DEDFDC; --sun-color:#EDEDE9; }
+[data-sky="fog-night"]      { --sky-a:#131519; --sky-b:#232629; --sky-c:#33363A; --sun-color:#C7C9C6; }
+[data-sky="rain-day"]       { --sky-a:#4E5867; --sky-b:#707886; --sky-c:#9AA1AA; --sun-color:#D6D9DE; }
+[data-sky="rain-night"]     { --sky-a:#06070B; --sky-b:#101319; --sky-c:#1B1F27; --sun-color:#B4B9C2; }
+[data-sky="snow-day"]       { --sky-a:#A6B4C0; --sky-b:#CBD5DC; --sky-c:#F0F3F5; --sun-color:#FFFFFF; }
+[data-sky="snow-night"]     { --sky-a:#0A0E16; --sky-b:#171E2B; --sky-c:#26304A; --sun-color:#E4E9F2; }
+[data-sky="storm-day"]      { --sky-a:#33363C; --sky-b:#4E525A; --sky-c:#686C74; --sun-color:#C9CCD1; }
+[data-sky="storm-night"]    { --sky-a:#040507; --sky-b:#0C0E12; --sky-c:#171A1F; --sun-color:#9DA2AB; }
+
+/* ==========================================================================
+   Reset / base
+   ========================================================================== */
+
+*, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ color-scheme: dark; }
+
+body{
+  min-height:100vh;
+  min-height:100dvh;
+  font-family:var(--font-body);
+  color:var(--ink);
+  overflow-x:hidden;
+  position:relative;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+
+ul{ list-style:none; }
+button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+input{ font:inherit; color:inherit; }
+
+/* ==========================================================================
+   Sky layer
+   ========================================================================== */
+
+.sky{ position:fixed; inset:0; z-index:0; overflow:hidden; }
+
+.sky__gradient{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, var(--sky-a) 0%, var(--sky-b) 52%, var(--sky-c) 100%);
+  transition: background 1.4s var(--ease);
+}
+
+#skyCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+
+.sky__scrim{
+  position:absolute; inset:0;
+  /* darkens the band the text sits in, regardless of how light the sky gradient is —
+     this is what keeps pale skies (snow/fog/clear) from washing out the readouts */
+  background: radial-gradient(ellipse 85% 65% at 50% 46%, rgba(6,8,12,0.42) 0%, rgba(6,8,12,0.20) 45%, rgba(6,8,12,0) 78%);
+  pointer-events:none;
+}
+
+.sky__vignette{
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%),
+              linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 16%);
+  pointer-events:none;
+}
+
+/* ==========================================================================
+   Layout shell
+   ========================================================================== */
+
+.viewport{
+  position:relative; z-index:1;
+  max-width:1180px;
+  margin:0 auto;
+  padding: 22px 28px 64px;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ==========================================================================
+   Top bar
+   ========================================================================== */
+
+.bar{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding-bottom:18px;
+  animation: dropIn 0.7s var(--ease) both;
+}
+
+.bar__mark{
+  display:flex; align-items:center; gap:9px;
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:0.18em;
+  color:var(--ink);
+  white-space:nowrap;
+  text-shadow: var(--sky-text-shadow);
+}
+
+.bar__dot{
+  width:7px; height:7px; border-radius:50%;
+  background:var(--ink-faint);
+  box-shadow:none;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+.bar__dot.is-live{
+  background:var(--beacon);
+  box-shadow:0 0 0 0 var(--beacon-dim);
+  animation: pulseDot 2.2s ease-out infinite;
+}
+
+@keyframes pulseDot{
+  0%{ box-shadow:0 0 0 0 var(--beacon-dim); }
+  70%{ box-shadow:0 0 0 8px rgba(85,214,198,0); }
+  100%{ box-shadow:0 0 0 0 rgba(85,214,198,0); }
+}
+
+.bar__search{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:999px;
+  padding:6px 6px 6px 18px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.25s;
+}
+.bar__search:focus-within{ border-color:var(--beacon); }
+
+.bar__search input{
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  font-size:14px;
+  color:var(--ink);
+}
+.bar__search input::placeholder{ color:var(--ink-faint); }
+
+.bar__search button{
+  display:flex; align-items:center;
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  padding:9px 16px;
+  border-radius:999px;
+  background:var(--ink);
+  color:#101216;
+  transition: transform 0.2s var(--ease), opacity 0.2s;
+}
+.bar__search button:hover{ transform:translateY(-1px); }
+.bar__search button:active{ transform:translateY(0); }
+.bar__search button:disabled{ opacity:0.5; cursor:default; transform:none; }
+
+.bar__clock{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-dim);
+  white-space:nowrap;
+  text-shadow: var(--sky-text-shadow);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:36px;
+  padding: 20px 0 10px;
+  min-height:52vh;
+}
+
+.hero__status{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.05em;
+  color:var(--ink-dim);
+  min-height:16px;
+  opacity:0;
+  transition: opacity 0.3s;
+  text-shadow: var(--sky-text-shadow);
+}
+.hero__status.is-visible{ opacity:1; }
+.hero__status.is-error{ color:var(--alert); }
+
+.reading{
+  opacity:0;
+  transform:translateY(10px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.reading.is-visible{ opacity:1; transform:translateY(0); }
+
+.reading__place{
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  margin-bottom:6px;
+  text-shadow: var(--sky-text-shadow);
+}
+
+.reading__temp-row{
+  display:flex;
+  align-items:flex-end;
+  gap:24px;
+  flex-wrap:wrap;
+}
+
+.reading__temp{
+  font-family:var(--font-display);
+  font-optical-sizing:auto;
+  font-weight:440;
+  font-size:clamp(72px, 13vw, 160px);
+  line-height:0.9;
+  letter-spacing:-0.02em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 10px 34px rgba(0,0,0,0.4);
+}
+
+.reading__meta{ padding-bottom:14px; }
+
+.reading__condition{
+  font-size:19px;
+  font-weight:500;
+  text-shadow: var(--sky-text-shadow);
+}
+
+.reading__feels{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-dim);
+  margin-top:4px;
+  text-shadow: var(--sky-text-shadow);
+}
+
+.reading__stats{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  max-width:520px;
+  margin-top:22px;
+  border-top:1px solid rgba(255,255,255,0.28);
+  padding-top:14px;
+}
+
+.stat dt{
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:4px;
+  text-shadow: var(--sky-text-shadow);
+}
+.stat dd{
+  font-family:var(--font-mono);
+  font-size:14.5px;
+  color:var(--ink);
+  text-shadow: var(--sky-text-shadow);
+}
+
+/* ==========================================================================
+   Horizon arc — signature element
+   ========================================================================== */
+
+.horizon{
+  opacity:0;
+  transition: opacity 0.8s var(--ease) 0.15s;
+}
+.horizon.is-visible{ opacity:1; }
+
+.horizon__svg{
+  width:100%; height:auto; display:block; overflow:visible;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));
+}
+
+.horizon__path{
+  stroke: #0A0C10;
+  stroke-opacity:0.35;
+  stroke-width:2;
+  stroke-dasharray:2 8;
+  stroke-linecap:round;
+  paint-order:stroke;
+}
+
+.horizon__ground{
+  stroke: #0A0C10;
+  stroke-opacity:0.22;
+  stroke-width:1;
+}
+
+.horizon__marker{ transition: transform 1s var(--ease); }
+.horizon__marker-core{
+  fill: var(--sun-color, #F4E4B8);
+  stroke: rgba(10,12,16,0.55);
+  stroke-width:1.5;
+  transition: fill 1s var(--ease);
+}
+.horizon__marker-halo{
+  fill: var(--sun-color, #F4E4B8);
+  opacity:0.32;
+  transition: fill 1s var(--ease);
+}
+
+.horizon__labels{
+  display:flex;
+  justify-content:space-between;
+  margin-top:2px;
+  padding:0 4px;
+}
+
+.horizon__label{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.horizon__label--now{ align-items:center; text-align:center; }
+.horizon__label--set{ align-items:flex-end; text-align:right; }
+
+.horizon__label-time{
+  font-family:var(--font-mono);
+  font-size:15px;
+  color:var(--ink);
+  text-shadow: var(--sky-text-shadow);
+}
+.horizon__label-tag{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  text-shadow: var(--sky-text-shadow);
+}
+
+/* ==========================================================================
+   Field notes
+   ========================================================================== */
+
+.notes{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap:16px;
+  margin-top:8px;
+}
+
+.panel{
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:var(--radius-lg);
+  padding:22px 22px 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity:0;
+  transform:translateY(14px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), border-color 0.3s;
+}
+.panel.is-visible{ opacity:1; transform:translateY(0); }
+
+.panel__title{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  font-family:var(--font-body);
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+.panel__index{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink-faint);
+}
+
+.panel__list li{
+  position:relative;
+  padding-left:16px;
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--ink-dim);
+  margin-bottom:11px;
+}
+.panel__list li::before{
+  content:"";
+  position:absolute; left:0; top:7px;
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--beacon);
+}
+.panel__list li:last-child{ margin-bottom:0; }
+.panel__list li strong{ color:var(--ink); font-weight:600; }
+
+.panel__forecast{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.forecast-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:9px 0;
+  border-bottom:1px solid var(--hairline);
+  font-size:13.5px;
+}
+.forecast-row:last-child{ border-bottom:none; }
+
+.forecast-row__day{ color:var(--ink); font-weight:500; min-width:64px; }
+.forecast-row__cond{ color:var(--ink-dim); flex:1; text-align:left; padding:0 10px; }
+.forecast-row__temps{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink); white-space:nowrap; }
+.forecast-row__temps span{ color:var(--ink-faint); }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.foot{
+  display:flex;
+  justify-content:space-between;
+  margin-top:26px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink-faint);
+  letter-spacing:0.03em;
+  text-shadow: var(--sky-text-shadow);
+}
+
+/* ==========================================================================
+   Empty state
+   ========================================================================== */
+
+.hint{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.hint p{
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:0.06em;
+  color:rgba(237,239,242,0.75);
+  text-shadow: var(--sky-text-shadow);
+  animation: hintFade 2.6s ease-in-out infinite;
+}
+body[data-loading="false"] .hint,
+body[data-has-data="true"] .hint{ display:none; }
+
+@keyframes hintFade{
+  0%, 100%{ opacity:0.35; }
+  50%{ opacity:0.85; }
+}
+
+/* ==========================================================================
+   Motion
+   ========================================================================== */
+
+@keyframes dropIn{
+  from{ opacity:0; transform:translateY(-10px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 860px){
+  .notes{ grid-template-columns:1fr; }
+  .reading__stats{ grid-template-columns:repeat(2, minmax(0,1fr)); row-gap:14px; }
+}
+
+@media (max-width: 620px){
+  .viewport{ padding:16px 16px 48px; }
+  .bar{ flex-wrap:wrap; }
+  .bar__clock{ order:3; width:100%; text-align:right; }
+  .reading__temp{ font-size:clamp(56px, 20vw, 96px); }
+  .horizon__labels{ font-size:12px; }
+}
