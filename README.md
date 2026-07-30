@@ -27,7 +27,7 @@ Built a responsive three-column pricing section using both CSS Flexbox and CSS G
 Built an interactive To-Do List application using HTML, CSS, and JavaScript.  
 Implemented DOM manipulation concepts to dynamically add, complete, delete, and filter tasks without reloading the page.
 
-Task 02: Animated Landing Page — IF Atelier
+**Task 02: Animated Landing Page- IF Atelier**
 [View Task 02: Landing Page](./Week-02/Task-02-Animated-Landing-Page)
 Designed and developed a modern fashion brand landing page for **IF Atelier**, featuring elegant bags, kurtis, and abayas.  
 Created a visually appealing interface with smooth animations, interactive elements, and responsive design.  
@@ -36,7 +36,7 @@ Focused on combining brand identity, user experience, and modern frontend develo
 ### Week 03
 ### Task 01: Live Weather Dashboard
 
-[View Task 01: Landing Page](./Week-03/Task-01-WeatherDashboard)
+[View Task 01: Weather Dashboard](./Week-03/Task-01-WeatherDashboard)
 Built an immersive weather visualization dashboard using HTML, CSS, and JavaScript.
 WHEATHER transforms real time weather data into a dynamic atmospheric experience instead of displaying weather information through traditional cards. The project integrates the Open-Meteo API to fetch live weather conditions and creates a responsive observatory style interface.
 
