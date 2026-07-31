@@ -40,6 +40,12 @@ Focused on combining brand identity, user experience, and modern frontend develo
 Built an immersive weather visualization dashboard using HTML, CSS, and JavaScript.
 WHEATHER transforms real time weather data into a dynamic atmospheric experience instead of displaying weather information through traditional cards. The project integrates the Open-Meteo API to fetch live weather conditions and creates a responsive observatory style interface.
 
+### Task 02: Local Storage Notes App — Corkboard
+
+[View Task 02: Notes App](./Week-03/Task-02-Notes%20App)
+Built a sticky note-inspired notes application using HTML, CSS, and JavaScript.
+Corkboard allows users to create, edit, delete, and search notes while keeping data persistent through the browser's Local Storage API. Implemented client-side form validation, dynamic DOM rendering, JSON-based data storage, and automatic last edited timestamps.
+Focused on building a practical frontend application that demonstrates CRUD operations, browser storage management, and interactive UI development.
 
 ### Week 04
 
