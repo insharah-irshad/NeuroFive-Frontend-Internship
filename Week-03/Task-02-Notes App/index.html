@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Corkboard — Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="board">
+  <header>
+    <div class="title-pin"><h1>the corkboard</h1></div>
+    <div class="subtitle">pin your thoughts before they wander off</div>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-note">
+      <span></span>
+      <input type="text" id="searchInput" placeholder="search notes…">
+    </div>
+    <button class="add-btn" id="addBtn">+ pin a new note</button>
+  </div>
+
+  <div id="emptyState" class="empty-state" style="display:none;">
+    the board is bare, pin your first note above
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="editor">
+    <h2 id="editorHeading">New note</h2>
+    <div class="field" id="titleField">
+      <label for="titleInput">Title</label>
+      <input type="text" id="titleInput" maxlength="60" placeholder="what's this about?">
+      <div class="error-msg">Give your note a title.</div>
+    </div>
+    <div class="field" id="contentField">
+      <label for="contentInput">Content</label>
+      <textarea id="contentInput" maxlength="2000" placeholder="write it down…"></textarea>
+      <div class="error-msg">A note can't be empty.</div>
+    </div>
+    <div class="editor-actions">
+      <button class="btn-cancel" id="cancelBtn">Cancel</button>
+      <button class="btn-save" id="saveBtn">Pin it</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
