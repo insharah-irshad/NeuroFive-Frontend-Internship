@@ -48,6 +48,13 @@ Corkboard allows users to create, edit, delete, and search notes while keeping d
 Focused on building a practical frontend application that demonstrates CRUD operations, browser storage management, and interactive UI development.
 
 ### Week 04
+**Task: Multi-Page Portfolio Website — Portfolio Site with Routing**
+
+[View Task 01: Portfolio Website](./Week-04)
+
+Built a fully responsive multi-page personal portfolio website using HTML, CSS, and JavaScript.
+The website includes Home, Projects, About, and Contact pages with a consistent user experience across all sections. Implemented a reusable navbar and footer using JavaScript components to avoid repeating the same structure across multiple pages.
+The Projects page dynamically renders project cards from a JavaScript array/object instead of hardcoded HTML, making the content easier to manage and scale. Added a functional contact form with client-side validation to handle user input and provide feedback without backend integration.
 
 ##  Technologies & Tools
 1. HTML
