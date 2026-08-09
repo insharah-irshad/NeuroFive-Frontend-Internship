@@ -56,6 +56,15 @@ Built a fully responsive multi-page personal portfolio website using HTML, CSS, 
 The website includes Home, Projects, About, and Contact pages with a consistent user experience across all sections. Implemented a reusable navbar and footer using JavaScript components to avoid repeating the same structure across multiple pages.
 The Projects page dynamically renders project cards from a JavaScript array/object instead of hardcoded HTML, making the content easier to manage and scale. Added a functional contact form with client-side validation to handle user input and provide feedback without backend integration.
 
+### Week 05
+### Task: Component UI Kit 
+
+[[View Task: Component UI kit](./Week-05)]
+Built a reusable UI kit featuring Button, Card, Modal, and Toast components using vanilla JavaScript.
+Implemented configurable props, variants, sizes, events, modal controls, and stacked toast notifications.
+Focused on reusable component architecture, local state, and reducing repeated DOM code.
+Created the project without frameworks, build tools, or external dependencies.
+
 ##  Technologies & Tools
 1. HTML
 2. CSS
