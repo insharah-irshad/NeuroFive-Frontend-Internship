@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Component Kit Contact Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#161311;
+    --charcoal-deep:#0e0c0b;
+    --safelight:#c1392b;
+    --safelight-bright:#e2593f;
+    --paper:#f0e9df;
+    --paper-dim:#a89c8c;
+    --amber:#d99a4e;
+    --success:#7fae7a;
+    --danger:#c1392b;
+    --frame:#3a332c;
+    --font-display: 'Fraunces', serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 1px 1px, rgba(240,233,223,0.05) 1px, transparent 0) 0 0/3px 3px,
+      radial-gradient(ellipse at 30% 0%, rgba(193,57,43,0.08), transparent 55%),
+      var(--charcoal);
+    color:var(--paper);
+    font-family:var(--font-body);
+    line-height:1.6;
+    min-height:100vh;
+  }
+  a{color:var(--safelight-bright);}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 28px 120px;}
+
+  header.hero{
+    border-bottom:1px solid var(--frame);
+    padding-bottom:40px;
+    margin-bottom:56px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--safelight-bright);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"●";
+    font-size:9px;
+    color:var(--safelight);
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-optical-sizing:auto;
+    font-size:clamp(34px,5vw,56px);
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--safelight-bright);
+  }
+  .hero p{
+    max-width:620px;
+    color:var(--paper-dim);
+    font-size:16px;
+    margin:0;
+  }
+  .roll-tag{
+    position:absolute;
+    right:0;top:6px;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--paper-dim);
+    text-align:right;
+    line-height:1.8;
+    display:none;
+    letter-spacing:.04em;
+  }
+  @media(min-width:760px){.roll-tag{display:block;}}
+
+  /* ---- frame (film negative styling for each section) ---- */
+  section.frame{
+    margin-bottom:76px;
+  }
+  .frame-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    padding-bottom:12px;
+    margin-bottom:0;
+  }
+  .frame-head h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .frame-num{
+    font-family:var(--font-mono);
+    color:var(--safelight-bright);
+    font-size:12.5px;
+    letter-spacing:.06em;
+  }
+  .signature{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--paper-dim);
+    background:rgba(240,233,223,.04);
+    border:1px solid var(--frame);
+    padding:4px 10px;
+    border-radius:2px;
+  }
+
+  .negative{
+    position:relative;
+    background:var(--charcoal-deep);
+    border:1px solid var(--frame);
+    border-radius:3px;
+    padding:34px 40px;
+    margin-top:20px;
+  }
+  /* sprocket holes */
+  .negative::before, .negative::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    width:22px;
+    background-image: radial-gradient(var(--charcoal) 4px, transparent 4.5px);
+    background-size: 22px 26px;
+    background-position: center;
+    background-repeat: repeat-y;
+    opacity:.9;
+  }
+  .negative::before{left:0;}
+  .negative::after{right:0;}
+  .negative > .negative-inner{
+    margin:0 14px;
+  }
+
+  /* ---- Buttons ---- */
+  .btn-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:20px;}
+  .btn-row:last-child{margin-bottom:0;}
+  .row-label{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--paper-dim);
+    width:100%;
+    margin-bottom:2px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+  }
+  .ui-btn{
+    font-family:var(--font-body);
+    font-weight:600;
+    border-radius:3px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
+    letter-spacing:.01em;
+  }
+  .ui-btn:active{transform:translateY(1px);}
+  .ui-btn:focus-visible{outline:2px solid var(--safelight-bright);outline-offset:2px;}
+  .ui-btn.size-sm{font-size:12.5px;padding:7px 14px;}
+  .ui-btn.size-md{font-size:14px;padding:10px 20px;}
+  .ui-btn.size-lg{font-size:16px;padding:13px 28px;}
+  .ui-btn.variant-primary{background:var(--safelight);color:var(--paper);}
+  .ui-btn.variant-primary:hover{filter:brightness(1.15);box-shadow:0 0 0 3px rgba(193,57,43,.18);}
+  .ui-btn.variant-secondary{background:transparent;color:var(--amber);border-color:var(--amber);}
+  .ui-btn.variant-secondary:hover{background:rgba(217,154,78,.12);}
+  .ui-btn.variant-ghost{background:transparent;color:var(--paper);border-color:transparent;}
+  .ui-btn.variant-ghost:hover{background:rgba(240,233,223,.08);}
+  .ui-btn.variant-danger{background:transparent;color:var(--safelight-bright);border-color:var(--safelight);}
+  .ui-btn.variant-danger:hover{background:rgba(193,57,43,.14);}
+  .ui-btn[disabled]{opacity:.35;cursor:not-allowed;transform:none;}
+
+  /* ---- Cards ---- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+  }
+  .ui-card{
+    background:var(--charcoal);
+    border:1px solid var(--frame);
+    border-radius:4px;
+    padding:20px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .ui-card::before{
+    content:"";
+    position:absolute;top:12px;right:12px;
+    width:5px;height:5px;border-radius:50%;
+    background:var(--safelight);
+  }
+  .ui-card .tag{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+  }
+  .ui-card .emoji{font-size:24px;}
+  .ui-card h3{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:18px;
+    margin:0;
+  }
+  .ui-card p{
+    color:var(--paper-dim);
+    font-size:13.5px;
+    margin:0;
+    flex-grow:1;
+  }
+  .ui-card .card-footer{
+    margin-top:6px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--safelight-bright);
+  }
+
+  /* ---- Modal ---- */
+  .modal-backdrop{
+    position:fixed;inset:0;
+    background:rgba(8,6,5,.78);
+    backdrop-filter:blur(2px);
+    display:flex;align-items:center;justify-content:center;
+    z-index:200;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+    padding:20px;
+  }
+  .modal-backdrop.open{opacity:1;pointer-events:auto;}
+  .ui-modal{
+    background:var(--charcoal-deep);
+    border:1px solid var(--safelight);
+    border-radius:4px;
+    max-width:420px;
+    width:100%;
+    padding:28px;
+    transform:translateY(14px) scale(.98);
+    transition:transform .18s ease;
+    box-shadow:0 24px 60px rgba(0,0,0,.6);
+  }
+  .modal-backdrop.open .ui-modal{transform:translateY(0) scale(1);}
+  .ui-modal h3{
+    font-family:var(--font-display);
+    font-weight:600;
+    margin:0 0 12px;
+    font-size:21px;
+    color:var(--safelight-bright);
+  }
+  .ui-modal p{color:var(--paper-dim);font-size:14px;margin:0 0 22px;}
+  .ui-modal .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  /* ---- Toast ---- */
+  #toast-root{
+    position:fixed;
+    bottom:24px;right:24px;
+    display:flex;
+    flex-direction:column-reverse;
+    gap:10px;
+    z-index:300;
+    max-width:320px;
+  }
+  .ui-toast{
+    font-family:var(--font-mono);
+    font-size:13px;
+    background:var(--charcoal-deep);
+    border:1px solid var(--frame);
+    border-left:3px solid var(--safelight);
+    color:var(--paper);
+    padding:12px 16px;
+    border-radius:3px;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    opacity:0;
+    transform:translateX(24px);
+    transition:opacity .2s ease, transform .2s ease;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .ui-toast.show{opacity:1;transform:translateX(0);}
+  .ui-toast.type-success{border-left-color:var(--success);}
+  .ui-toast.type-error{border-left-color:var(--danger);}
+  .ui-toast.type-info{border-left-color:var(--amber);}
+  .ui-toast .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .ui-toast.type-success .dot{background:var(--success);}
+  .ui-toast.type-error .dot{background:var(--danger);}
+  .ui-toast.type-info .dot{background:var(--amber);}
+
+  /* ---- reflection ---- */
+  .reflection{
+    border:1px dashed var(--frame);
+    border-radius:4px;
+    padding:26px 28px;
+    background:rgba(193,57,43,.04);
+  }
+  .reflection h2{font-family:var(--font-display);font-weight:600;font-size:20px;margin:0 0 14px;color:var(--safelight-bright);}
+  .reflection p{color:var(--paper-dim);font-size:14.5px;margin:0;}
+
+  footer{
+    margin-top:80px;
+    border-top:1px solid var(--frame);
+    padding-top:24px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--paper-dim);
+    letter-spacing:.03em;
+  }
+</style>
+</head>
+<body>
+
+<div id="toast-root"></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Component Kit / Contact Sheet</div>
+    <h1>Four frames, <em>one roll</em>,<br>developed once.</h1>
+    <p>A small vanilla-JS UI kit Button, Card, Modal, and Toast each authored as a single factory function that takes props and returns behavior. No hardcoded instances; every element on this page is the same function exposed under a different light.</p>
+    <div class="roll-tag">roll 01 · frames 01–04<br>ISO n/a<br>developed 2026-08</div>
+  </header>
+
+  <!-- BUTTON -->
+  <section class="frame" id="sec-button">
+    <div class="frame-head">
+      <h2><span class="frame-num">FRAME 01</span> Button</h2>
+      <div class="signature">createButton({ text, variant, size, onClick, disabled })</div>
+    </div>
+    <div class="negative"><div class="negative-inner">
+      <div class="btn-row">
+        <div class="row-label">variant</div>
+      </div>
+      <div class="btn-row" id="btn-row-variant"></div>
+      <div class="btn-row">
+        <div class="row-label">size</div>
+      </div>
+      <div class="btn-row" id="btn-row-size"></div>
+      <div class="btn-row">
+        <div class="row-label">state</div>
+      </div>
+      <div class="btn-row" id="btn-row-state"></div>
+    </div></div>
+  </section>
+
+  <!-- CARD -->
+  <section class="frame" id="sec-card">
+    <div class="frame-head">
+      <h2><span class="frame-num">FRAME 02</span> Card</h2>
+      <div class="signature">createCard({ emoji, tag, title, description, footer })</div>
+    </div>
+    <div class="negative"><div class="negative-inner">
+      <div class="card-grid" id="card-grid"></div>
+    </div></div>
+  </section>
+
+  <!-- MODAL -->
+  <section class="frame" id="sec-modal">
+    <div class="frame-head">
+      <h2><span class="frame-num">FRAME 03</span> Modal</h2>
+      <div class="signature">createModal({ title, content, confirmText, onConfirm })</div>
+    </div>
+    <div class="negative"><div class="negative-inner">
+      <div class="btn-row" id="modal-triggers"></div>
+    </div></div>
+  </section>
+
+  <!-- TOAST -->
+  <section class="frame" id="sec-toast">
+    <div class="frame-head">
+      <h2><span class="frame-num">FRAME 04</span> Toast</h2>
+      <div class="signature">toast.show({ message, type, duration })</div>
+    </div>
+    <div class="negative"><div class="negative-inner">
+      <div class="btn-row" id="toast-triggers"></div>
+    </div></div>
+  </section>
+
+  <section class="reflection">
+    <h2>On thinking in components</h2>
+    <p>
+      Earlier tasks got written top-to-bottom: markup first, then a script that reached into specific IDs and wired up whatever the page happened to contain, so a second button or card meant copy-pasting a block and re-editing every reference by hand. Building this kit forced the opposite order. I had to decide each component's contract (its props and its return value) before writing a single line of layout, since the demo page itself is just repeated calls to that contract with different arguments. That separation made state and behavior local: the toast stack, the modal's open/close transition, and each button's variant all live inside the function that owns them instead of being scattered across global handlers. It also made "add one more instance" free a new card or a differently-worded toast is a one-line call, not a copy-pasted DOM block which is the same leverage React components are built to give you.
+    </p>
+  </section>
+
+  <footer>
+    createButton · createCard · createModal · createToast — vanilla JS, no framework, no build step.
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
