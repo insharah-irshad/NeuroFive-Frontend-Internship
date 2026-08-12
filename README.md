@@ -68,7 +68,7 @@ Created the project without frameworks, build tools, or external dependencies.
 ### Week 05
 ### Task: Capstone, Build a Full Frontend Mini App (E-Commerce Storefront) 
 
-[[View Task: Mini E-Commerce App](./Week-06)]
+[[View Task: Mini E-Commerce App](./Week-06/storefront)]
 Built a fully responsive e-commerce storefront for IF Ateliers using HTML, CSS, and Vanilla JavaScript. Implemented product listing, search and category filtering, product details, shopping cart, quantity management, checkout summary, and localStorage persistence.
 Reused the Week 05 Component UI Kit with Button, Card, Modal, Toast, and Quantity Stepper components. Added hash-based routing, client-side form validation, responsive layouts, and smooth animations.
 
