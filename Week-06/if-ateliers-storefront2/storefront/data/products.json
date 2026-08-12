@@ -1,0 +1,226 @@
+[
+  {
+    "id": 1,
+    "title": "Noor Straight Kurti \u2014 Ink",
+    "category": "kurtis",
+    "price": 42.0,
+    "swatch": "black",
+    "icon": "kurti",
+    "description": "A straight-cut kurti in matte ink crepe with clean three-quarter sleeves and a rounded neckline. Built to layer over trousers or a slip skirt without ever feeling fussy.",
+    "rating": {
+      "rate": 4.8,
+      "count": 214
+    },
+    "image": "https://images.pexels.com/photos/28512766/pexels-photo-28512766.jpeg"
+  },
+  {
+    "id": 2,
+    "title": "Amal A-Line Kurti \u2014 Sand",
+    "category": "kurtis",
+    "price": 46.0,
+    "swatch": "sand",
+    "icon": "kurti",
+    "description": "A softly flared A-line kurti in warm sand, with a curved hem and side slits for ease of movement through the day.",
+    "rating": {
+      "rate": 4.7,
+      "count": 158
+    },
+    "image": "https://images.pexels.com/photos/28512787/pexels-photo-28512787.jpeg"
+  },
+  {
+    "id": 3,
+    "title": "Zahra Embroidered Kurti \u2014 Gold",
+    "category": "kurtis",
+    "price": 58.0,
+    "swatch": "gold",
+    "icon": "kurti",
+    "description": "Hand-finished thread embroidery traces the neckline and cuffs of this gold-tone kurti. Subtle up close, striking from across the room.",
+    "rating": {
+      "rate": 4.9,
+      "count": 97
+    },
+    "image": "https://images.pexels.com/photos/25328656/pexels-photo-25328656.jpeg"
+  },
+  {
+    "id": 4,
+    "title": "Rima Angrakha Kurti \u2014 Blush",
+    "category": "kurtis",
+    "price": 52.0,
+    "swatch": "blush",
+    "icon": "kurti",
+    "description": "An angrakha-style wrap kurti in muted blush, with an asymmetric front tie and gently gathered sleeves.",
+    "rating": {
+      "rate": 4.6,
+      "count": 121
+    },
+    "image": "https://images.unsplash.com/photo-1741847639057-b51a25d42892?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 5,
+    "title": "Layla Everyday Kurti \u2014 Sage",
+    "category": "kurtis",
+    "price": 38.0,
+    "swatch": "sage",
+    "icon": "kurti",
+    "description": "Lightweight and breathable, built for daily wear. A quiet sage tone with side pockets, because pockets matter.",
+    "rating": {
+      "rate": 4.5,
+      "count": 176
+    },
+    "image": "https://images.pexels.com/photos/36552675/pexels-photo-36552675.jpeg"
+  },
+  {
+    "id": 16,
+    "title": "Meher Printed Kurti \u2014 Sand",
+    "category": "kurtis",
+    "price": 44.0,
+    "swatch": "sand",
+    "icon": "kurti",
+    "description": "A hand-block-print inspired kurti in a soft sand base, cut generously through the body with a straight hem.",
+    "rating": {
+      "rate": 4.6,
+      "count": 68
+    },
+    "image": "https://images.pexels.com/photos/22064212/pexels-photo-22064212.jpeg"
+  },
+  {
+    "id": 6,
+    "title": "Farah Kaftan Dress \u2014 Gold",
+    "category": "outfits",
+    "price": 96.0,
+    "swatch": "gold",
+    "icon": "outfit",
+    "description": "A relaxed kaftan dress in a brushed-gold tone, with dropped shoulders and a self-tie waist. Equally at home at an evening gathering or over trousers on a quiet afternoon.",
+    "rating": {
+      "rate": 4.7,
+      "count": 143
+    },
+    "image": "https://images.pexels.com/photos/32347637/pexels-photo-32347637.jpeg"
+  },
+  {
+    "id": 7,
+    "title": "Sana Pleated Co-ord Set \u2014 Sand",
+    "category": "outfits",
+    "price": 112.0,
+    "swatch": "sand",
+    "icon": "outfit",
+    "description": "A two-piece pleated set \u2014 a fluid tunic paired with matching wide-leg trousers \u2014 cut from the same bolt of fabric so the tones never fight each other.",
+    "rating": {
+      "rate": 4.6,
+      "count": 88
+    },
+    "image": "https://images.pexels.com/photos/36552681/pexels-photo-36552681.jpeg"
+  },
+  {
+    "id": 8,
+    "title": "Hana Modest Maxi Dress \u2014 Sage",
+    "category": "outfits",
+    "price": 88.0,
+    "swatch": "sage",
+    "icon": "outfit",
+    "description": "A floor-length maxi in a soft sage crepe, with long sleeves and a modest neckline built into the pattern rather than added after.",
+    "rating": {
+      "rate": 4.5,
+      "count": 102
+    },
+    "image": "https://images.unsplash.com/photo-1560607812-841561d8261a?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 9,
+    "title": "Noor Tiered Skirt Set \u2014 Blush",
+    "category": "outfits",
+    "price": 104.0,
+    "swatch": "blush",
+    "icon": "outfit",
+    "description": "A tiered maxi skirt with a cropped, high-neck blouse in a matching blush. Layered hems give it movement without adding weight.",
+    "rating": {
+      "rate": 4.8,
+      "count": 76
+    },
+    "image": "https://images.pexels.com/photos/33667860/pexels-photo-33667860.jpeg"
+  },
+  {
+    "id": 10,
+    "title": "Iman Wrap Dress \u2014 Ink",
+    "category": "outfits",
+    "price": 92.0,
+    "swatch": "black",
+    "icon": "outfit",
+    "description": "A wrap-front dress in matte ink crepe with a self-fabric belt, built to take you from desk to dinner without a costume change.",
+    "rating": {
+      "rate": 4.6,
+      "count": 134
+    },
+    "image": "https://images.pexels.com/photos/13262229/pexels-photo-13262229.jpeg"
+  },
+  {
+    "id": 11,
+    "title": "Reem Structured Tote \u2014 Camel",
+    "category": "bags",
+    "price": 148.0,
+    "swatch": "sand",
+    "icon": "tote",
+    "description": "A structured top-handle tote in vegetable-tanned camel leather, roomy enough for a laptop and a day's essentials, with a detachable crossbody strap.",
+    "rating": {
+      "rate": 4.9,
+      "count": 205
+    },
+    "image": "https://images.unsplash.com/photo-1535981444082-2a5dc0548ef3?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 12,
+    "title": "Dina Evening Clutch \u2014 Gold",
+    "category": "bags",
+    "price": 76.0,
+    "swatch": "gold",
+    "icon": "clutch",
+    "description": "A slim envelope clutch finished in a soft gold-tone leather, with a hidden magnetic clasp and a thin optional wrist strap.",
+    "rating": {
+      "rate": 4.7,
+      "count": 91
+    },
+    "image": "https://images.pexels.com/photos/28387111/pexels-photo-28387111.jpeg"
+  },
+  {
+    "id": 13,
+    "title": "Salma Crossbody \u2014 Black",
+    "category": "bags",
+    "price": 98.0,
+    "swatch": "black",
+    "icon": "crossbody",
+    "description": "A compact crossbody in smooth black leather with an adjustable strap and a single interior pocket sized for a phone and cards.",
+    "rating": {
+      "rate": 4.6,
+      "count": 168
+    },
+    "image": "https://images.pexels.com/photos/23223834/pexels-photo-23223834.jpeg"
+  },
+  {
+    "id": 14,
+    "title": "Yara Woven Tote \u2014 Sage",
+    "category": "bags",
+    "price": 118.0,
+    "swatch": "sage",
+    "icon": "tote",
+    "description": "A hand-woven tote in a muted sage raffia blend with leather trim, built for warmer days and market mornings.",
+    "rating": {
+      "rate": 4.5,
+      "count": 64
+    },
+    "image": "https://images.pexels.com/photos/26954381/pexels-photo-26954381.jpeg"
+  },
+  {
+    "id": 15,
+    "title": "Mona Mini Crossbody \u2014 Blush",
+    "category": "bags",
+    "price": 82.0,
+    "swatch": "blush",
+    "icon": "crossbody",
+    "description": "A petite crossbody in blush leather, sized for the essentials only \u2014 cards, keys, a lipstick \u2014 on a slim adjustable strap.",
+    "rating": {
+      "rate": 4.4,
+      "count": 57
+    },
+    "image": "https://images.pexels.com/photos/35666033/pexels-photo-35666033.jpeg"
+  }
+]
